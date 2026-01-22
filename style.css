@@ -383,11 +383,11 @@
   
   .how{ 
     align-items: center;
-    gap: var(--xl);
+    gap: 80px;
     padding: 0 60px;
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 120px;
   }
 
   .how__item {
@@ -395,7 +395,7 @@
     flex-direction: row;
     justify-content:center;
     align-items:center;
-    gap: var(--m);
+    gap: var(--xl);
   }
 
   .how__text h3, .how__text--alt h3 {
@@ -414,8 +414,16 @@
   /* swap order feel on desktop for middle row */
   .how__text--alt{ grid-column: span 6; }
   .how__card--alt{ grid-column: span 6; }
+
+  .how__text strong, .how__text--alt strong {
+    color: #82B3E1;
+  }
+
+  .how__text, .how__text--alt {
+    width: 60%;
+  }
   
-  @media (max-width: 768px){
+  @media (max-width: 1000px){
     .how{ padding: 0; }
     .how__img { max-width: 80%; margin: auto; }
     .how__item{
@@ -430,15 +438,34 @@
       order: 2; 
       text-align: center;
     }
-  
-    /* optioneel: zeker dat ze full width zijn */
-    .how__item .how__text,
-    .how__item .how__card{
-      width: 100%;
+
+    .how__text, .how__text--alt {
+      padding: 0 40px;
     }
     
     .how__text--alt{ grid-column: span 4; text-align: center; }
     .how__card--alt{ grid-column: span 4; text-align: center; }
+  }
+
+  @media (max-width: 750px){
+    .how__text, .how__text--alt {
+      padding: 0px;
+    }
+    .how__text, .how__text--alt {
+      width: 70%;
+    }
+    .how__img{ width:70%; height:auto; display:block; align-self: center; }
+
+  }
+
+
+  @media (max-width: 500px){
+    .how__text, .how__text--alt {
+      padding: 0px;
+    }
+    .how__text, .how__text--alt {
+      width: 90%;
+    }
   }
  
   .why{
