@@ -1,0 +1,347 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nimbli</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;800;900&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container">
+      <div class="grid nav__row">
+        <div class="col-6 col-m-2 nav__brand">
+          <img class="logo" src="./images/logo.png" alt="Nimbli">
+        </div>
+
+        <div class="col-6 col-m-2 nav__actions">
+          <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+        
+          <nav class="nav__menu" aria-label="Hoofdmenu">
+            <a class="btn2" href="#">Voor wie</a>
+            <a class="btn2" href="#">Prijzen</a>
+            <a class="btn2" href="#">Portaal</a>
+            <a class="btn btn--primary" href="register.html">Registreren</a>
+          </nav>
+        </div>
+        
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="grid hero__grid">
+          <div class="col-6 col-m-4 hero__content">
+            <h1 class="h1">Samen sterk in thuisrevalidatie</h1>
+
+            <p class="body">
+              Nimbli helpt kinderen thuis oefenen met speelse challenges,
+              terwijl jij als kinesitherapeut objectieve data en tijdswinst krijgt.
+            </p>
+
+            <div class="stack stack--m">
+              <a class="btn btn--primary" href="#plan-gesprek">Plan een gesprek</a>
+              <a class="btn btn--secondary" href="#demo">Bekijk demo</a>
+            </div>
+
+            <p class="note">Geen verplichtingen</p>
+          </div>
+
+          <div class="col-6 col-m-4 hero__media">
+            <img class="hero__img" src="./images/hero-img.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOE HET WERKT -->
+    <section class="section" id="portaal">
+      <div class="container">
+        <!-- <h2 class="h2 section__title">Zo werkt Nimbli in jouw praktijk</h2> -->
+
+        <div class="grid how">
+          <div class="col-6 col-m-4 how__item">
+            <div class="how__card">
+              <img class="how__img" src="./images/sectionimg1.png" alt="">
+            </div>
+            <div class="how__text">
+              <h3 class="h3">Kies het oefenprogramma</h3>
+              <p class="body">Selecteer oefeningen of een traject binnen je dashboard.</p>
+            </div>
+          </div>
+          
+          <div class="col-6 col-m-4 how__item">
+          <div class="how__text--alt">
+            <h3 class="h3">Kind oefent thuis met speelse challenges</h3>
+            <p class="body">AI detecteert automatisch houding, herhalingen en voortgang.</p>
+          </div>
+          <div class="how__card--alt">
+            <img class="how__img" src="./images/sectionimg2.png" alt="">
+          </div>
+          </div>
+
+          <div class="col-6 col-m-4 how__item">
+          <div class="how__card">
+            <img class="how__img" src="./images/sectionimg3.png" alt="">
+          </div>
+          <div class="how__text">
+            <h3 class="h3">Jij ziet objectieve data in je dashboard</h3>
+            <p class="body">Je weet exact wat er thuis gebeurt zonder extra werk.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAAROM (monkeytail.svg als background) -->
+    <section class="section why" id="voor-wie">
+      <div class="container">
+        <div class="grid why__grid">
+          <div class="col-5 col-m-4">
+            <h2 class="h2">Waarom kinesisten Nimbli gebruiken</h2>
+          </div>
+
+          <div class="col-7 col-m-4 why__cards">
+            <article class="why__card">
+            <img src="./images/monkeytail.svg" alt="">
+            <div>
+              <h4 class="h4">Betere therapietrouw</h4>
+              <p class="body">Kinderen oefenen vaker door spelelementen en challenges.</p>
+            </div>
+            </article>
+
+            <article class="why__card">
+            <img src="./images/monkeytail.svg" alt="">
+            <div>
+              <h4 class="h4">Geen extra administratie</h4>
+              <p class="body">Alles wordt automatisch gelogd. Geen papieren schema’s.</p>
+            </div>  
+            </article>
+
+            <article class="why__card">
+            <img src="./images/monkeytail.svg" alt="">
+            <div>
+              <h4 class="h4">Professionele indruk</h4>
+              <p class="body">Je praktijk voelt moderner, innovatief en betrokken.</p>
+            </div>
+            </article>
+
+            <article class="why__card">
+            <img src="./images/monkeytail.svg" alt="">
+            <div>
+              <h4 class="h4">Objectieve data</h4>
+              <p class="body">Je ziet frequentie, inzet, kwaliteit en vooruitgang.</p>
+            </div> 
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="h2 section__title">Veelgestelde vragen</h2>
+
+        <div class="grid faq">
+          <div class="col-7 col-m-4 faq__list">
+            <details class="faq__item">
+              <summary class="faq__q">
+                <p>Hoeveel tijd kost het om een traject in te stellen?</p>               
+                <span>+</span>
+              </summary>
+              <div class="faq__a body">Meestal enkele minuten. Je kiest een traject of oefeningen en Nimbli logt de rest automatisch.</div>
+            </details>
+
+            <details class="faq__item">
+                <summary class="faq__q">
+                    <p>Is Nimbli een vervanging van kinesitherapie?</p>               
+                    <span>+</span>
+                  </summary>
+              <div class="faq__a body">Nee. Nimbli is een <strong>ondersteunend hulpmiddel</strong> tussen consultaties. De kinesist blijft altijd verantwoordelijk voor de diagnose, het behandelplan en de opvolging. Nimbli helpt enkel om thuisoefeningen beter vol te houden en inzichtelijk te maken.</div>
+            </details>
+
+            <details class="faq__item">
+                <summary class="faq__q">
+                    <p>Voor welke patiënten is Nimbli geschikt?</p>               
+                    <span>+</span>
+                  </summary>
+              <div class="faq__a body">Nimbli is ontwikkeld voor <strong>kinderen van 6 tot 12 jaar</strong> die thuis kinesitherapie-oefeningen moeten uitvoeren, met ondersteuning van een ouder of verzorger. De app is vooral geschikt voor langdurige of terugkerende revalidatietrajecten.</div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__q">
+               <p>Moeten ouders of kinderen betalen?</p>               
+                <span>+</span>
+            </summary>
+              <div class="faq__a body">Nee. <strong>Alleen de kinesitherapiepraktijk betaalt.</strong> Ouders en kinderen gebruiken de app gratis als onderdeel van het behandeltraject.</div>
+            </details>
+
+            <details class="faq__item">
+                <summary class="faq__q">
+                    <p>Hoeveel tijd kost Nimbli mij als kinesist?</p>               
+                    <span>+</span>
+                </summary>
+                <div class="faq__a body">Nimbli is ontworpen om <strong>tijd te besparen</strong>, niet om extra werk te creëren.
+                    Oefeningen instellen duurt slechts enkele minuten en opvolging gebeurt via een overzichtelijk dashboard. Veel kinesisten ervaren net meer gerichte sessies doordat thuisoefeningen consistenter uitgevoerd worden.</div>
+              </details>
+
+              <details class="faq__item">
+                <summary class="faq__q">
+                    <p>Is Nimbli GDPR-conform?</p>               
+                    <span>+</span>
+                </summary>
+                <div class="faq__a body">Ja. Nimbli volgt het principe van <strong>dataminimalisatie</strong>: enkel strikt noodzakelijke gegevens worden verwerkt. Ouders en kinesisten behouden altijd controle over hun data.</div>
+              </details>
+          </div>
+
+          <aside class="col-5 col-m-4 contact">
+            <div class="contact__icon">
+              <img src="./images/message.svg" alt="">
+            </div>
+            <h3 class="h3">Heb je nog steeds een vraag?</h3>
+            <p class="body">Laat het ons weten. We beantwoorden het graag en denken mee vanuit jouw praktijk.</p>
+            <a class="btn btn--primary" href="#contact">Schrijf ons een bericht</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS (star.svg) -->
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <div class="reviews__head">
+          <h2 class="h2">Wat gebruikers zeggen</h2>
+          <p class="body muted">Echte ervaringen van gezinnen en kinesisten</p>
+        </div>
+
+        <div class="grid reviews__grid">
+          <article class="col-4 col-m-4 review">
+            <div class="review__stars" aria-label="5 sterren">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+            </div>
+            <p class="body">Emma vond oefenen eerst vervelend, maar nu vraagt ze er zelf naar. De vooruitgang is echt zichtbaar.</p>
+            <span class="line"></span>
+            <p class="review__who"><strong>Sophie Janssens</strong><span>Moeder van Emma, 7 jaar</span></p>
+          </article>
+
+          <article class="col-4 col-m-4 review">
+            <div class="review__stars" aria-label="5 sterren">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+            </div>
+            <p class="body">Ik werk efficiënter, de therapietrouw is enorm gestegen en ik zie betere resultaten.</p>
+            <span class="line"></span>
+            <p class="review__who"><strong>Thomas De Vries</strong><span>Kinderkinesist</span></p>
+          </article>
+
+          <article class="col-4 col-m-4 review">
+            <div class="review__stars" aria-label="5 sterren">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+              <img src="./images/star.svg" alt="">
+            </div>
+            <p class="body">Als ouder geeft het rust. We hebben structuur en kunnen makkelijk voortgang delen met de kinesist.</p>
+            <span class="line"></span>
+            <p class="review__who"><strong>Lisa Vermeulen</strong><span>Mama van Noah, 9 jaar</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section CTA">
+        <div class="col-6 col-m-4 CTA_content">
+            <h1 class="h1">Klaar om te starten?</h1>
+            <p class="body">
+            Begin vandaag met een gratis proefperiode en ontdek hoe Nimbli kinderen motiveert om thuis te oefenen.
+            </p>
+
+            <div class="stack2 stack2--m">
+              <a class="btn btn--primary" href="#plan-gesprek">Plan een gesprek</a>
+              <a class="btn btn--secondary" href="#demo">Bekijk demo</a>
+            </div>
+
+            <p class="note">14 dagen gratis • Geen creditcard vereist • Direct beginnen</p>
+          </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="grid footer__grid">
+          <div class="col-6 col-m-4 footer__brand">
+            <img class="logo" src="./images/logo.png" alt="Nimbli">
+            <p class="body muted footer__text">De revalidatie app die kinderen motiveert om thuis te oefenen.</p>
+          </div>
+          <div class="col-3 col-m-2 footer__links">
+            <p class="footer__title">Product</p>
+            <a class="footer__link" href="#">Voor wie</a>
+            <a class="footer__link" href="#">Portaal</a>
+            <a class="footer__link" href="#">Prijzen</a>
+          </div>
+          <div class="col-3 col-m-2 footer__links">
+            <p class="footer__title">Contact</p>
+            <a class="footer__link" href="mailto:info@nimbli.be">info@nimbli.be</a>
+            <a class="footer__link" href="tel:+32000000000">+32 00 00 00 00</a>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>© 2026 Nimbli</span>
+          <span class="footer__sep">•</span>
+          <a class="footer__link" href="#">Privacy</a>
+          <span class="footer__sep">•</span>
+          <a class="footer__link" href="#">Voorwaarden</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+<script>
+    document.querySelectorAll('.faq__item').forEach(item => {
+        item.addEventListener('click', () => {
+            const span = item.querySelector('.faq__q span');
+            span.textContent = span.textContent === '+' ? '-' : '+';
+        });
+    });
+
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', isOpen);
+    toggle.textContent = isOpen ? '✕' : '☰';
+  });
+
+  // klik buiten menu = sluiten
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    }
+  });
+
+</script>
+</html>
