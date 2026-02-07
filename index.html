@@ -5,36 +5,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nimbli - Samen sterk in thuisrevalidatie</title>
-  <link rel="icon" href="./images/nimbli-favicon.ico" type="image/x-icon">
+  <link rel="icon" href="nimbli-favicon.ico" type="image/x-icon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;800;900&display=swap" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
-  <!-- NAV -->
   <header class="nav">
     <div class="container">
       <div class="grid nav__row">
-        <div class="col-6 col-m-2 nav__brand">
-          <img class="logo" src="./images/logo.svg" alt="Nimbli">
-        </div>
+        <a href="/" class="col-6 col-m-2 nav__brand">
+          <img class="logo" src="../images/logo.svg" alt="Nimbli">
+        </a>
 
         <div class="col-6 col-m-2 nav__actions">
           <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
         
           <nav class="nav__menu" aria-label="Hoofdmenu">
-            <a class="btn2" href="#">Voor wie</a>
-            <a class="btn2" href="#">Prijzen</a>
-            <a class="btn2" href="#">Portaal</a>
-            <a class="btn btn--primary" href="register.html">Registreren</a>
+            <a class="btn2" href="#voor-wie">Voor wie</a>
+            <a class="btn2" href="#prijzen">Prijzen</a>
+            <a class="btn2" href="https://nimbli-portaal-lovat.vercel.app/">Portaal</a>
+            <a class="btn btn--primary" href="register-step-1.html">Registreren</a>
           </nav>
-        </div>
-        
+        </div>     
       </div>
     </div>
   </header>
@@ -167,6 +164,90 @@
         </div>
       </div>
     </section>
+
+    <!-- ✅ PLAATS DIT IN index.html bv NA "Waarom" of NA "Hoe het werkt" -->
+<section class="section pricing" id="prijzen">
+  <div class="container">
+    <div class="pricing__head">
+      <h2 class="h2">Onze prijzen</h2>
+      <p class="body muted">Eén abonnement per praktijk. Kinderen en ouders gebruiken de app gratis.</p>
+    </div>
+
+    <div class="grid pricing__grid">
+      <!-- START -->
+      <article class="col-4 col-m-4 priceCard">
+        <div class="priceCard__top">
+          <p class="priceCard__name">Start</p>
+          <p class="priceCard__desc body muted">Voor kleine praktijken</p>
+        </div>
+
+        <div class="priceCard__price">
+          <span class="priceCard__amount">€250</span>
+          <span class="priceCard__period">/ gebruiker / jaar</span>
+        </div>
+
+        <ul class="priceCard__list body">
+          <li>1 dashboard gebruiker</li>
+          <li>Patiënten beheren</li>
+          <li>Oefeningen toewijzen</li>
+          <li>Basis rapportage</li>
+        </ul>
+
+        <a class="btn btn--secondary priceCard__cta" href="register-step-1.html">Start registratie</a>
+      </article>
+
+      <!-- PRO (highlight) -->
+      <article class="col-4 col-m-4 priceCard priceCard--featured">
+        <div class="badge">Meest gekozen</div>
+
+        <div class="priceCard__top">
+          <p class="priceCard__name">Pro</p>
+          <p class="priceCard__desc body muted">Voor groeiende praktijken</p>
+        </div>
+
+        <div class="priceCard__price">
+          <span class="priceCard__amount">€250</span>
+          <span class="priceCard__period">/ gebruiker / jaar</span>
+        </div>
+
+        <ul class="priceCard__list body">
+          <li>Meerdere dashboard gebruikers</li>
+          <li>Teambeheer</li>
+          <li>Geavanceerde inzichten</li>
+          <li>Prioritaire support</li>
+        </ul>
+
+        <a class="btn btn--primary priceCard__cta" href="register-step-1.html">Registreer je praktijk</a>
+      </article>
+
+      <!-- ENTERPRISE -->
+      <article class="col-4 col-m-4 priceCard">
+        <div class="priceCard__top">
+          <p class="priceCard__name">Enterprise</p>
+          <p class="priceCard__desc body muted">Voor groepspraktijken</p>
+        </div>
+
+        <div class="priceCard__price">
+          <span class="priceCard__amount">Op maat</span>
+          <span class="priceCard__period">/ jaar</span>
+        </div>
+
+        <ul class="priceCard__list body">
+          <li>Custom onboarding</li>
+          <li>Training voor team</li>
+          <li>Service-level afspraken</li>
+          <li>Integraties (optioneel)</li>
+        </ul>
+
+        <a class="btn btn--secondary priceCard__cta" href="#contact">Contacteer ons</a>
+      </article>
+    </div>
+
+    <p class="pricing__note note">
+      Prijsindicatie: €250 per dashboard gebruiker per jaar. In stap 2 van registratie kies je het aantal gebruikers.
+    </p>
+  </div>
+</section>
 
     <section class="section">
       <div class="container">
@@ -313,8 +394,8 @@
           </div>
           <div class="col-3 col-m-2 footer__links">
             <p class="footer__title">Product</p>
-            <a class="footer__link" href="#">Voor wie</a>
-            <a class="footer__link" href="#">Portaal</a>
+            <a class="footer__link" href="#voor-wie">Voor wie</a>
+            <a class="footer__link" href="https://nimbli-portaal-lovat.vercel.app/">Portaal</a>
             <a class="footer__link" href="#">Prijzen</a>
           </div>
           <div class="col-3 col-m-2 footer__links">
@@ -336,6 +417,8 @@
 
   </main>
 </body>
+
+<script src="./js/index.js"></script>
 <script>
     document.querySelectorAll('.faq__item').forEach(item => {
         item.addEventListener('click', () => {
@@ -343,24 +426,6 @@
             span.textContent = span.textContent === '+' ? '-' : '+';
         });
     });
-
-  const toggle = document.querySelector('.nav__toggle');
-  const menu = document.querySelector('.nav__menu');
-
-  toggle.addEventListener('click', () => {
-    const isOpen = menu.classList.toggle('active');
-    toggle.setAttribute('aria-expanded', isOpen);
-    toggle.textContent = isOpen ? '✕' : '☰';
-  });
-
-  // klik buiten menu = sluiten
-  document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('active');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = '☰';
-    }
-  });
-
 </script>
+
 </html>

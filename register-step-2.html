@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nimbli | Registreren (Stap 2)</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/register.css" />
+
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="container">
+        <div class="grid nav__row">
+          <a href="/" class="col-6 col-m-2 nav__brand">
+            <img class="logo" src="../images/logo.svg" alt="Nimbli">
+          </a>
+  
+          <div class="col-6 col-m-2 nav__actions">
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+          
+            <nav class="nav__menu" aria-label="Hoofdmenu">
+              <a class="btn2" href="#">Voor wie</a>
+              <a class="btn2" href="#">Prijzen</a>
+              <a class="btn2" href="https://nimbli-portaal-lovat.vercel.app/">Portaal</a>
+              <a class="btn btn--primary" href="register-step-1.html">Registreren</a>
+            </nav>
+          </div>     
+        </div>
+      </div>
+    </header>
+
+    <main class="card">
+      <!-- PROGRESS -->
+      <div class="progressRow">
+        <div class="stepLabel">Stap 2 van 3</div>
+        <div class="progress">
+          <div class="pill is-done" data-pill><span></span></div>
+          <div class="pill is-active" data-pill><span></span></div>
+          <div class="pill is-todo" data-pill><span></span></div>
+        </div>
+      </div>
+
+      <!-- HEADER -->
+      <div class="headerRow">
+        <div class="hgroup">
+          <h1>Registreren</h1>
+        </div>
+        <button class="btn btn--primary" id="nextBtn">Volgende</button>
+      </div>
+
+      <div class="error" data-error></div>
+
+      <!-- CONTENT GRID -->
+      <div class="regLayout">
+        <!-- LEFT -->
+        <section>
+          <h2 class="sectionTitle">Gebruikers</h2>
+          <div class="hint" id="seatHint"></div>
+
+          <div id="usersWrap" class="usersWrap"></div>
+
+          <button class="btn btn--secondary addUserBtn" id="addUserBtn" type="button">
+            <span class="plus">＋</span> Gebruiker toevoegen
+          </button>
+        </section>
+
+        <!-- RIGHT SUMMARY -->
+        <aside class="orderCard">
+          <h3>Bestelling samenvatting</h3>
+
+          <div class="sumRow">
+            <span><b>Gebruiker(s)</b></span>
+            <span id="sumUsers">1</span>
+            <span id="sumTotal">€250</span>
+          </div>
+
+          <div class="sumMeta">
+            <div class="sumLine">
+              <span>Totaal (excl. btw)</span>
+              <span id="sumExcl">€197,5</span>
+            </div>
+            <div class="sumLine">
+              <span>21% BTW</span>
+              <span id="sumVat">€52,5</span>
+            </div>
+          </div>
+
+          <div class="sumDivider"></div>
+
+          <div class="sumTotalRow">
+            <span>Totaal te betalen</span>
+            <span id="sumTotal2">€250</span>
+          </div>
+
+          <button class="btn btn--primary full" id="toPayBtn" type="button">
+            Naar betaaloverzicht
+          </button>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/index.js"></script>
+  <script>
+    /* -------------------------
+       STORAGE
+    --------------------------*/
+    const KEY = "nimbli_register_v1"
+    const load = () => {
+      try { return JSON.parse(localStorage.getItem(KEY) || "{}") }
+      catch { return {} }
+    }
+    const save = (patch) => {
+      const next = { ...load(), ...patch }
+      localStorage.setItem(KEY, JSON.stringify(next))
+      return next
+    }
+
+    /* -------------------------
+       PRICING (zoals screenshot)
+       €250 incl btw per gebruiker
+    --------------------------*/
+    const PRICE_PER_USER = 250
+    const VAT_RATE = 0.21
+
+    /* -------------------------
+       UI HELPERS
+    --------------------------*/
+    const $ = (sel) => document.querySelector(sel)
+    const showError = (msg) => {
+      const el = $("[data-error]")
+      el.textContent = msg
+      el.style.display = "block"
+    }
+    const hideError = () => {
+      const el = $("[data-error]")
+      el.style.display = "none"
+    }
+
+    const formatEUR = (n) => {
+      // n is number
+      const rounded = Math.round(n * 100) / 100
+      return "€" + rounded.toString().replace(".", ",")
+    }
+
+    /* -------------------------
+       USERS STATE
+    --------------------------*/
+    const state = load()
+    const seats = Number(state.seats || 1)
+    const usersWrap = $("#usersWrap")
+    const seatHint = $("#seatHint")
+
+    seatHint.textContent = `Je koos ${seats} gebruiker(s). Vul de beheerder in en voeg extra gebruikers toe.`
+
+    // users array in storage: [{first,last,email,isAdmin}]
+    let users = Array.isArray(state.users) ? state.users : []
+    if (users.length === 0) {
+      users = [{ first: "", last: "", email: "", isAdmin: true }]
+    } else {
+      // force admin on first
+      users[0] = { ...users[0], isAdmin: true }
+    }
+
+    function userCardHTML(u, index) {
+      const title = index === 0 ? "Gebruiker 1 (Beheerder)" : `Gebruiker ${index + 1}`
+      return `
+        <div class="userCard" data-user-index="${index}">
+          <div class="userTitle">${title}</div>
+
+          <div class="fields">
+            <div class="field">
+              <input class="input" name="first" placeholder="Voornaam" value="${u.first || ""}" />
+            </div>
+
+            <div class="field">
+              <input class="input" name="last" placeholder="Achternaam" value="${u.last || ""}" />
+            </div>
+
+            <div class="field">
+              <input class="input" name="email" placeholder="E-mailadres" value="${u.email || ""}" />
+            </div>
+
+            ${index > 0 ? `<button class="removeUser" type="button">Verwijderen</button>` : ``}
+          </div>
+        </div>
+      `
+    }
+
+    function renderUsers() {
+      usersWrap.innerHTML = users.map(userCardHTML).join("")
+      $("#addUserBtn").disabled = users.length >= seats
+      $("#addUserBtn").style.opacity = users.length >= seats ? "0.5" : "1"
+
+      // bind input events
+      usersWrap.querySelectorAll(".userCard").forEach((card) => {
+        const idx = Number(card.dataset.userIndex)
+
+        card.querySelectorAll("input").forEach((inp) => {
+          inp.addEventListener("input", () => {
+            users[idx] = { ...users[idx], [inp.name]: inp.value }
+            save({ users })
+          })
+        })
+
+        const removeBtn = card.querySelector(".removeUser")
+        if (removeBtn) {
+          removeBtn.addEventListener("click", () => {
+            users.splice(idx, 1)
+            save({ users })
+            renderUsers()
+            renderSummary()
+          })
+        }
+      })
+    }
+
+    function renderSummary() {
+      const count = users.length
+      const total = count * PRICE_PER_USER
+      const excl = total / (1 + VAT_RATE)
+      const vat = total - excl
+
+      $("#sumUsers").textContent = String(count)
+      $("#sumTotal").textContent = formatEUR(total)
+      $("#sumExcl").textContent = formatEUR(excl)
+      $("#sumVat").textContent = formatEUR(vat)
+      $("#sumTotal2").textContent = formatEUR(total)
+    }
+
+    function addUser() {
+      hideError()
+      if (users.length >= seats) return
+      users.push({ first: "", last: "", email: "", isAdmin: false })
+      save({ users })
+      renderUsers()
+      renderSummary()
+    }
+
+    function validate() {
+      // alle ingevulde users moeten geldig zijn
+      for (let i = 0; i < users.length; i++) {
+        const u = users[i]
+        if (!u.first?.trim() || !u.last?.trim()) return `Vul voor gebruiker ${i + 1} voornaam en achternaam in.`
+        if (!u.email?.trim()) return `Vul voor gebruiker ${i + 1} een e-mailadres in.`
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(u.email.trim())) return `E-mailadres van gebruiker ${i + 1} is niet geldig.`
+      }
+      // je mag minder users hebben dan seats, maar niet 0
+      if (users.length < 1) return "Voeg minstens 1 gebruiker toe."
+      return null
+    }
+
+    function goNext() {
+      hideError()
+      const err = validate()
+      if (err) return showError(err)
+      save({ users })
+      window.location.href = "register-step-3.html"
+    }
+
+    // init
+    renderUsers()
+    renderSummary()
+
+    $("#addUserBtn").addEventListener("click", addUser)
+    $("#toPayBtn").addEventListener("click", goNext)
+    $("#nextBtn").addEventListener("click", goNext)
+  </script>
+</body>
+</html>

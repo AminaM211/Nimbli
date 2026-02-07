@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nimbli | Registreren (Stap 1)</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/register.css" />
+
+</head>
+<body>
+  <header class="nav">
+    <div class="container">
+      <div class="grid nav__row">
+        <a href="/" class="col-6 col-m-2 nav__brand">
+          <img class="logo" src="../images/logo.svg" alt="Nimbli">
+        </a>
+
+        <div class="col-6 col-m-2 nav__actions">
+          <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+        
+          <nav class="nav__menu" aria-label="Hoofdmenu">
+            <a class="btn2" href="#">Voor wie</a>
+            <a class="btn2" href="#">Prijzen</a>
+            <a class="btn2" href="https://nimbli-portaal-lovat.vercel.app/">Portaal</a>
+            <a class="btn btn--primary" href="register-step-1.html">Registreren</a>
+          </nav>
+        </div>     
+      </div>
+    </div>
+  </header>
+
+    <main class="card">
+      <div class="progressRow">
+        <div class="stepLabel">Stap 1 van 3</div>
+        <div class="progress">
+          <div class="pill" data-pill><span></span></div>
+          <div class="pill" data-pill><span></span></div>
+          <div class="pill" data-pill><span></span></div>
+        </div>
+      </div>
+
+      <div class="headerRow">
+        <div class="hgroup">
+          <h1>Registreren</h1>
+          <p>Vul je praktijkgegevens in. Facturatie mag hetzelfde zijn als praktijkadres.</p>
+        </div>
+
+        <button class="btn btn--primary" id="nextBtn">Volgende</button>
+      </div>
+
+      <div class="error" data-error></div>
+
+      <div class="formGrid">
+        <section>
+          <h2 class="sectionTitle">Praktijkadres</h2>
+          <div class="fields">
+            <div class="field">
+              <label>Naam</label>
+              <input class="input" name="practice_name" placeholder="" />
+            </div>
+
+            <div class="field">
+              <label>Contactpersoon</label>
+              <div class="row2">
+                <input class="input" name="contact_firstname" placeholder="Voornaam" />
+                <input class="input" name="contact_lastname" placeholder="Achternaam" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Land</label>
+              <input class="input" name="practice_country" placeholder="België" />
+            </div>
+
+            <div class="field">
+              <label>Adres</label>
+              <div class="row2">
+                <input class="input" name="practice_street" placeholder="Straatnaam" />
+                <input class="input" name="practice_nr" placeholder="Nr" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Postcode</label>
+              <div class="row2">
+                <input class="input" name="practice_zip" placeholder="POSTCODE" />
+                <input class="input" name="practice_city" placeholder="Plaatsnaam" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sectionTitle">Factuuradres</h2>
+          <div class="fields">
+            <div class="field">
+              <label>Naam</label>
+              <input class="input" name="billing_name" />
+            </div>
+
+            <div class="field">
+              <label>Land</label>
+              <input class="input" name="billing_country" placeholder="België" />
+            </div>
+
+            <div class="field">
+              <label>Adres</label>
+              <div class="row2">
+                <input class="input" name="billing_street" placeholder="Straatnaam" />
+                <input class="input" name="billing_nr" placeholder="Nr" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Postcode</label>
+              <div class="row2">
+                <input class="input" name="billing_zip" placeholder="POSTCODE" />
+                <input class="input" name="billing_city" placeholder="Plaatsnaam" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>
+                <input type="checkbox" name="billing_same" />
+                Zelfde als praktijkadres
+              </label>
+              <div class="hint">Vinkt dit aan en we vullen het automatisch in.</div>
+            </div>
+          </div>
+        </section>
+
+        <section style="grid-column: 1 / -1;">
+          <h2 class="sectionTitle">Overige</h2>
+          <div class="fields" style="max-width: 520px;">
+            <div class="field">
+              <label>Telefoonnummer</label>
+              <input class="input" name="phone" />
+            </div>
+
+            <div class="field">
+              <label>E-mailadres algemeen</label>
+              <input class="input" name="email_general" />
+            </div>
+
+            <div class="field">
+              <label>E-mailadres facturen</label>
+              <input class="input" name="email_billing" />
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label>KVK-nummer</label>
+                <input class="input" name="kvk" placeholder="Optioneel" />
+              </div>
+              <div class="field">
+                <label>BTW-nummer</label>
+                <input class="input" name="vat" placeholder="Optioneel" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footerRow">
+        <button class="btn btn--secondary" id="resetBtn" type="button">Reset</button>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn--primary" id="nextBtn2" type="button">Volgende</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="footerLinks">
+      <a href="#">Privacy</a>
+      <a href="#">Gebruiksvoorwaarden</a>
+    </div>
+
+  <script src="./js/index.js"></script>
+
+  <script type="module">
+    import { fillFromStorage, hideError, showError, setProgress, loadData, saveData, clearData, required, emailOk, byName } from "./register.js"
+
+    setProgress(1)
+    fillFromStorage([
+      "practice_name","contact_firstname","contact_lastname",
+      "practice_country","practice_street","practice_nr","practice_zip","practice_city",
+      "billing_name","billing_country","billing_street","billing_nr","billing_zip","billing_city",
+      "billing_same","phone","email_general","email_billing","kvk","vat"
+    ])
+
+    const same = byName("billing_same")
+
+    function syncBillingFromPractice(){
+      const d = loadData()
+      const map = [
+        ["billing_name","practice_name"],
+        ["billing_country","practice_country"],
+        ["billing_street","practice_street"],
+        ["billing_nr","practice_nr"],
+        ["billing_zip","practice_zip"],
+        ["billing_city","practice_city"]
+      ]
+      map.forEach(([b,p]) => {
+        const v = byName(p)?.value || d[p] || ""
+        const el = byName(b)
+        if (el) el.value = v
+      })
+    }
+
+    if (same){
+      same.addEventListener("change", () => {
+        saveData({ billing_same: same.checked })
+        if (same.checked) syncBillingFromPractice()
+      })
+    }
+
+    ;["practice_name","practice_country","practice_street","practice_nr","practice_zip","practice_city"].forEach((n)=>{
+      const el = byName(n)
+      if (!el) return
+      el.addEventListener("input", () => {
+        if (byName("billing_same")?.checked) syncBillingFromPractice()
+      })
+    })
+
+    function collect(){
+      const names = [
+        "practice_name","contact_firstname","contact_lastname",
+        "practice_country","practice_street","practice_nr","practice_zip","practice_city",
+        "billing_name","billing_country","billing_street","billing_nr","billing_zip","billing_city",
+        "phone","email_general","email_billing","kvk","vat"
+      ]
+      const patch = {}
+      names.forEach((n) => patch[n] = byName(n)?.value || "")
+      patch.billing_same = Boolean(byName("billing_same")?.checked)
+      return patch
+    }
+
+    function validate(p){
+      if (!required(p.practice_name)) return "Vul de naam van je praktijk in."
+      if (!required(p.contact_firstname) || !required(p.contact_lastname)) return "Vul de contactpersoon volledig in."
+      if (!required(p.practice_country) || !required(p.practice_street) || !required(p.practice_nr) || !required(p.practice_zip) || !required(p.practice_city)) {
+        return "Vul het praktijkadres volledig in."
+      }
+
+      if (!required(p.billing_name) || !required(p.billing_country) || !required(p.billing_street) || !required(p.billing_nr) || !required(p.billing_zip) || !required(p.billing_city)) {
+        return "Vul het factuuradres volledig in (of vink 'Zelfde als praktijkadres' aan)."
+      }
+
+      if (!required(p.phone)) return "Vul een telefoonnummer in."
+      if (!emailOk(p.email_general)) return "Vul een geldig algemeen e-mailadres in."
+      if (!emailOk(p.email_billing)) return "Vul een geldig e-mailadres voor facturen in."
+      return null
+    }
+
+    function goNext(){
+      hideError()
+      const patch = collect()
+      if (byName("billing_same")?.checked) syncBillingFromPractice()
+      const patch2 = collect()
+      const err = validate(patch2)
+      if (err) return showError(err)
+
+      saveData(patch2)
+      window.location.href = "register-step-2.html"
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", goNext)
+    document.getElementById("nextBtn2").addEventListener("click", goNext)
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      clearData()
+      window.location.reload()
+    })
+
+    // autosave
+    document.querySelectorAll("input").forEach((el) => {
+      el.addEventListener("input", () => saveData({ [el.name]: el.type === "checkbox" ? el.checked : el.value }))
+    })
+  </script>
+</body>
+</html>

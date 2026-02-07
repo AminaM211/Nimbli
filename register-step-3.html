@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nimbli | Registreren (Stap 3)</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/register.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+        <div class="container">
+          <div class="grid nav__row">
+            <a href="/" class="col-6 col-m-2 nav__brand">
+              <img class="logo" src="../images/logo.svg" alt="Nimbli">
+            </a>
+    
+            <div class="col-6 col-m-2 nav__actions">
+              <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+            
+              <nav class="nav__menu" aria-label="Hoofdmenu">
+                <a class="btn2" href="#">Voor wie</a>
+                <a class="btn2" href="#">Prijzen</a>
+                <a class="btn2" href="https://nimbli-portaal-lovat.vercel.app/">Portaal</a>
+                <a class="btn btn--primary" href="register-step-1.html">Registreren</a>
+              </nav>
+            </div>     
+          </div>
+        </div>
+      </header>
+
+    <main class="card">
+      <!-- PROGRESS -->
+      <div class="progressRow">
+        <div class="stepLabel">Stap 3 van 3</div>
+        <div class="progress">
+          <div class="pill is-done" data-pill><span></span></div>
+          <div class="pill is-done" data-pill><span></span></div>
+          <div class="pill is-active" data-pill><span></span></div>
+        </div>
+      </div>
+
+      <!-- HEADER -->
+      <div class="headerRow">
+        <div class="hgroup">
+          <h1>Registreren</h1>
+        </div>
+        <button class="btn btn--primary" id="payBtn">Betalen</button>
+      </div>
+
+      <div class="error" data-error></div>
+
+      <div class="regLayout">
+        <!-- LEFT -->
+        <section>
+          <h2 className="sectionTitle">Betaaloverzicht</h2>
+          <div class="hint">Gegevens</div>
+
+          <!-- FACTUURADRES CARD -->
+          <div class="infoCard">
+            <button class="editBtn" type="button" id="editAddress" title="Bewerken">✎</button>
+            <div class="infoTitle">Factuuradres</div>
+            <div class="infoText" id="billingBlock"></div>
+          </div>
+
+          <!-- USERS CARD -->
+          <div class="infoCard">
+            <button class="editBtn" type="button" id="editUsers" title="Bewerken">✎</button>
+            <div class="infoTitle" id="usersTitle">Gebruiker 1 (Beheerder)</div>
+            <div class="infoText" id="usersBlock"></div>
+          </div>
+
+          <h3 class="sectionTitle" style="margin-top:18px;">Betaalmethode</h3>
+
+          <div class="payCard">
+            <button class="payOption active" type="button" id="optCard">
+              <img src="/images/card.png" alt="" onerror="this.style.display='none'"/>
+              <span>Krediet- of debetkaart</span>
+            </button>
+
+            <div class="payForm" id="cardForm">
+              <div class="field">
+                <label>Naam op kaart</label>
+                <input class="input" id="cardName" placeholder="Achter- en voornaam" />
+              </div>
+
+              <div class="field">
+                <label>Kaartnummer</label>
+                <input class="input" id="cardNumber" inputmode="numeric" placeholder="0000 0000 0000 0000" />
+              </div>
+
+              <div class="row3">
+                <div class="field">
+                  <label>Vervaldatum</label>
+                  <div class="row2">
+                    <input class="input" id="cardMM" inputmode="numeric" placeholder="MM" />
+                    <input class="input" id="cardYY" inputmode="numeric" placeholder="YYYY" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>Vervaldatum</label>
+                  <input class="input" id="cardCVC" inputmode="numeric" placeholder="CVV" />
+                </div>
+              </div>
+
+              <div class="hint">Dit is demo UI, geen echte betaling.</div>
+            </div>
+
+            <div class="hint" style="margin:14px 0 10px;">Of betaal met PayPal</div>
+
+            <button class="payOption" type="button" id="optPaypal">
+              <img src="/images/paypal.png" alt="" onerror="this.style.display='none'"/>
+              <span>PayPal</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- RIGHT SUMMARY -->
+        <aside class="orderCard">
+          <h3>Bestelling samenvatting</h3>
+
+          <div class="sumRow">
+            <span><b>Gebruiker(s)</b></span>
+            <span id="sumUsers">1</span>
+            <span id="sumTotal">€250</span>
+          </div>
+
+          <div class="sumMeta">
+            <div class="sumLine">
+              <span>Totaal (excl. btw)</span>
+              <span id="sumExcl">€197,5</span>
+            </div>
+            <div class="sumLine">
+              <span>21% BTW</span>
+              <span id="sumVat">€52,5</span>
+            </div>
+          </div>
+
+          <div class="sumDivider"></div>
+
+          <div class="sumTotalRow">
+            <span>Totaal te betalen</span>
+            <span id="sumTotal2">€250</span>
+          </div>
+
+          <button class="btn btn--primary full" id="payBtn2" type="button">
+            Betalen
+          </button>
+        </aside>
+      </div>
+    </main>
+  </div>
+  <script src="./js/index.js"></script>
+
+  <script>
+    const KEY = "nimbli_register_v1"
+    const load = () => {
+      try { return JSON.parse(localStorage.getItem(KEY) || "{}") }
+      catch { return {} }
+    }
+
+    const PRICE_PER_USER = 250
+    const VAT_RATE = 0.21
+
+    const $ = (s) => document.querySelector(s)
+    const showError = (msg) => {
+      const el = $("[data-error]")
+      el.textContent = msg
+      el.style.display = "block"
+    }
+    const hideError = () => {
+      const el = $("[data-error]")
+      el.style.display = "none"
+    }
+    const formatEUR = (n) => {
+      const rounded = Math.round(n * 100) / 100
+      return "€" + rounded.toString().replace(".", ",")
+    }
+
+    const state = load()
+    const users = Array.isArray(state.users) ? state.users : []
+    if (!users.length) {
+      // als iemand direct naar stap 3 gaat
+      window.location.href = "register-step-2.html"
+    }
+
+    function renderSummary() {
+      const count = users.length
+      const total = count * PRICE_PER_USER
+      const excl = total / (1 + VAT_RATE)
+      const vat = total - excl
+
+      $("#sumUsers").textContent = String(count)
+      $("#sumTotal").textContent = formatEUR(total)
+      $("#sumExcl").textContent = formatEUR(excl)
+      $("#sumVat").textContent = formatEUR(vat)
+      $("#sumTotal2").textContent = formatEUR(total)
+    }
+
+    function renderBilling() {
+      const lines = []
+      // we nemen billing_* uit stap 1 (of practice_* als billing_same)
+      const name = state.billing_name || state.practice_name || "-"
+      const country = state.billing_country || state.practice_country || ""
+      const street = state.billing_street || state.practice_street || ""
+      const nr = state.billing_nr || state.practice_nr || ""
+      const zip = state.billing_zip || state.practice_zip || ""
+      const city = state.billing_city || state.practice_city || ""
+
+      lines.push(`<b>${name}</b>`)
+      if (country) lines.push(country)
+      if (street || nr) lines.push(`${street} ${nr}`.trim())
+      if (zip || city) lines.push(`${zip} ${city}`.trim())
+
+      $("#billingBlock").innerHTML = lines.join("<br/>")
+    }
+
+    function renderUsers() {
+      const lines = users.map((u, i) => {
+        const title = i === 0 ? "Gebruiker 1 (Beheerder)" : `Gebruiker ${i + 1}`
+        return `<div style="margin-bottom:10px;">
+          <b>${title}</b><br/>
+          ${u.first || ""} ${u.last || ""}<br/>
+          ${u.email || ""}
+        </div>`
+      }).join("")
+
+      $("#usersTitle").textContent = users.length === 1 ? "Gebruiker 1 (Beheerder)" : "Gebruikers"
+      $("#usersBlock").innerHTML = lines
+    }
+
+    function validatePayment() {
+      // enkel demo-validatie voor kaart
+      const cardSelected = $("#optCard").classList.contains("active")
+      if (!cardSelected) return null
+
+      const name = $("#cardName").value.trim()
+      const number = $("#cardNumber").value.replace(/\s+/g, "").trim()
+      const mm = $("#cardMM").value.trim()
+      const yy = $("#cardYY").value.trim()
+      const cvc = $("#cardCVC").value.trim()
+
+      if (!name) return "Vul de naam op de kaart in."
+      if (number.length < 12) return "Kaartnummer lijkt niet geldig."
+      if (!mm || !yy) return "Vul de vervaldatum in."
+      if (cvc.length < 3) return "CVV lijkt niet geldig."
+      return null
+    }
+
+    function pay() {
+      hideError()
+      const err = validatePayment()
+      if (err) return showError(err)
+
+      alert("Demo: betaling gelukt ✅ (hier zou je Stripe/Mollie koppelen)")
+      // eventueel reset:
+      // localStorage.removeItem(KEY)
+      // window.location.href = "thankyou.html"
+    }
+
+    // edit buttons
+    $("#editAddress").addEventListener("click", () => window.location.href = "register-step-1.html")
+    $("#editUsers").addEventListener("click", () => window.location.href = "register-step-2.html")
+
+    // payment toggle (UI)
+    $("#optCard").addEventListener("click", () => {
+      $("#optCard").classList.add("active")
+      $("#optPaypal").classList.remove("active")
+      $("#cardForm").style.display = "block"
+    })
+    $("#optPaypal").addEventListener("click", () => {
+      $("#optPaypal").classList.add("active")
+      $("#optCard").classList.remove("active")
+      $("#cardForm").style.display = "none"
+    })
+
+    $("#payBtn").addEventListener("click", pay)
+    $("#payBtn2").addEventListener("click", pay)
+
+    renderSummary()
+    renderBilling()
+    renderUsers()
+  </script>
+</body>
+</html>
